@@ -8,6 +8,8 @@
     "url": ""
   },
   "scripts": {
+    "dev": "nodemon",
+    "watch": "npx -p typescript tsc --watch",
     "build": "npx -p typescript tsc",
     "pretest": "npm run lint && npm run build",
     "test:unit": "ts-node node_modules/tape/bin/tape test/unit.ts",
@@ -24,7 +26,6 @@
     "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "nodemon": "^2.0.4",
     "prettier": "^2.3.0",
     "supertest": "^4.0.2",
     "tape": "^4.13.0",
@@ -33,8 +34,15 @@
     "typescript": "^4.2.4"
   },
   "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.53.0",
     "@types/node": "^16.11.12",
+    "@types/pg": "^8.6.4",
     "cloudevents": "^5.2.0",
-    "faas-js-runtime": "^0.8.0"
+    "faas-js-runtime": "^0.8.0",
+    "install": "^0.13.0",
+    "nodemon": "^2.0.15",
+    "npm": "^8.5.2",
+    "pg": "^8.7.3",
+    "sql-template-strings": "^2.2.2"
   }
 }

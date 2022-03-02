@@ -3,7 +3,7 @@ name: nodejs-func
 namespace: joel-test
 runtime: typescript
 registry: ""
-image: "docker.io/jtmckay2017/nodejs-func:latest"
+image: docker.io/jtmckay2017/nodejs-func:latest
 imageDigest: ""
 builder: gcr.io/paketo-buildpacks/builder:base
 builders:
@@ -13,7 +13,27 @@ builders:
 buildpacks: []
 volumes: []
 buildEnvs: []
-envs: []
+envs: 
+- name: NODE_ENV
+  value: '{{ env:NODE_ENV }}'
+- name: PGUSER
+  value: '{{ env:PGUSER }}'
+- name: PGHOST
+  value: '{{ env:PGHOST }}'
+- name: PGPASSWORD
+  value: '{{ env:PGPASSWORD }}'
+- name: PGDATABASE
+  value: '{{ env:PGDATABASE }}'
+- name: PGPORT
+  value: '{{ env:PGPORT }}'
+- name: AWS_REGION
+  value: '{{ env:AWS_REGION }}'
+- name: AWS_ACCESS_KEY_ID
+  value: '{{ env:AWS_ACCESS_KEY_ID }}'
+- name: AWS_SECRET_ACCESS_KEY
+  value: '{{ env:AWS_SECRET_ACCESS_KEY }}'
+- name: COGNITO_USER_POOL_ID
+  value: '{{ env:COGNITO_USER_POOL_ID }}'
 annotations: {}
 options: {}
 labels: []

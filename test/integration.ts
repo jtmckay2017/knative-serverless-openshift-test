@@ -6,9 +6,15 @@ import * as func from '../build';
 import test, { Test } from 'tape';
 
 const data = {
-  name: 'tiger',
-  customerId: '01234'
-};
+  "company_name": "Joel Test Company",
+  "company_subdomain": "joeltestcomp",
+  "company_slug": "jtc",
+  "identity_name_first": "Jol",
+  "identity_name_last": "MKay",
+  "identity_personal_email": "joel.mckay+jtc@agileonboarding.com",
+  "identity_work_email": "joel.mckay+jtc@agileonboarding.com",
+  "identity_mobile_phone": "5401123654",
+}
 
 const errHandler = (t: Test) => (err: Error) => {
   t.error(err);

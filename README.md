@@ -8,8 +8,10 @@ To run locally
 
 ```console
 npm install
-npm run build
-npm run local
+# In one terminal
+npm run watch # Typescript watch and recompile
+# In another terminal
+npm run dev # JS watch and restart server
 ```
 
 The runtime will expose three endpoints.
