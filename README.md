@@ -19,7 +19,7 @@ Send the api a json body:
 
 ## Local execution
 
-To run locally
+To run locally 
 
 ```console
 npm install
