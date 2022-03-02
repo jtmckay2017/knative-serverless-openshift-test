@@ -1,6 +1,21 @@
-# TypeScript HTTP Function
+# TypeScript HTTP Function for Company Provision.
 
-Welcome to your new TypeScript function project! The boilerplate function code can be found in [`index.ts`](./index.ts). This function will respond to incoming HTTP GET and POST requests.
+This endpoint will take in new company info and create all the initial data for said company.
+Additionally it will create a user in cognito in the admin group and enable them.
+
+Send the api a json body:
+```
+{
+    "company_name": "",
+    "company_subdomain": "",
+    "company_slug": "",
+    "identity_name_first": "",
+    "identity_name_last": "",
+    "identity_personal_email": "",
+    "identity_work_email": "",
+    "identity_mobile_phone": ""
+}
+```
 
 ## Local execution
 
@@ -13,6 +28,11 @@ npm run watch # Typescript watch and recompile
 # In another terminal
 npm run dev # JS watch and restart server
 ```
+
+I use postman to test endpoint locally. 
+This may not work if some kind of auth is added to this function later.
+
+## Default Readme stuff
 
 The runtime will expose three endpoints.
 
