@@ -1,0 +1,86 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# deploy artifacts
+CHANGE_LOG_DEV.md
+CHANGE_LOG_PROD.md
+previousRelease.json
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+secrets/**
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vim
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+.history/**
+.envrc
+**/karma_results.json
+**/karma_results_structured.json
+**/TESTS-*.xml
+apps/coverage*
+**/node_modules/**/*
+node_modules/**
+api/fts/node_modules
+**/.serverless/*.zip
+**/terraform-provider-aws*
+**/bad_mig/**
+api/functionbeat/pkg
+.history
+**/__pycache__
+**/.requirements.zip
+api/resumes/nltk_data
+api/resumes/en_core_web_sm
+api/resumes/testData
+.history/**
+.dccache
+package-lock.original.json
+.eslintcache
+
+report*.json
+api/_config.yaml
+default_gcp_creds.json
+.vscode/settings.json
+**/codegen.yml
+**/locals.json
+
+env.sh
+
+**/.env*
+**/dist
+
+**/kubeconfig.yaml
+
+**/onboarding.sql
+
