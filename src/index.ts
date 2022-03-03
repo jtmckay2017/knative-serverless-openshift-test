@@ -2,7 +2,7 @@ import * as CognitoIdp from "@aws-sdk/client-cognito-identity-provider";
 import { Context, Invokable } from 'faas-js-runtime';
 import { Client } from 'pg';
 import { ProvisionCompanyInput } from './interfaces/interfaces';
-import { buildOnboardingSQL } from './sql/onboarding';
+import { buildOnboardingSQL } from "./sql/onboarding";
 
 
 
@@ -31,14 +31,17 @@ export const handle: Invokable = async function (context: Context): Promise<stri
 
     const queryString = buildOnboardingSQL(input);
 
-    console.log(input)
-
     validateInput(input);
+    
+    // Create Company
+    await client.query(queryString); 
 
-    await client.query(queryString);
-
-
-
+    // Setup User in Cognito
+    const idpClient = new CognitoIdp.CognitoIdentityProviderClient({});
+    await idpClient.send(new CognitoIdp.AdminCreateUserCommand(createUserParams(input.identity_work_email)));
+    await idpClient.send(new CognitoIdp.AdminAddUserToGroupCommand(addUserToGroupParams(input.identity_work_email, 'Admin')));
+    await idpClient.send(new CognitoIdp.AdminEnableUserCommand(enableUserParams(input.identity_work_email)));
+    
     await client.query('COMMIT')
   } catch (error) {
     console.log(error);
@@ -65,7 +68,7 @@ const validateInput = (input: ProvisionCompanyInput) => {
   })
 }
 
-const createCognitoParams = (firstUserEmail: string): CognitoIdp.AdminCreateUserCommandInput => {
+const createUserParams = (firstUserEmail: string): CognitoIdp.AdminCreateUserCommandInput => {
   const createUserParams: CognitoIdp.AdminCreateUserCommandInput = {
     UserPoolId: process.env.COGNITO_USER_POOL_ID,
     Username: firstUserEmail,
@@ -79,4 +82,21 @@ const createCognitoParams = (firstUserEmail: string): CognitoIdp.AdminCreateUser
     }]
   };
   return createUserParams;
+}
+
+const addUserToGroupParams = (firstUserEmail: string, groupName: string): CognitoIdp.AdminAddUserToGroupCommandInput => {
+  const addUserToGroupParams: CognitoIdp.AdminAddUserToGroupCommandInput = {
+    UserPoolId: process.env.COGNITO_USER_POOL_ID,
+    Username: firstUserEmail,
+    GroupName: groupName
+  };
+  return addUserToGroupParams;
+}
+
+const enableUserParams = (firstUserEmail: string): CognitoIdp.AdminEnableUserCommandInput => {
+  const enableUserParams: CognitoIdp.AdminEnableUserCommandInput = {
+    UserPoolId: process.env.COGNITO_USER_POOL_ID,
+    Username: firstUserEmail,
+  };
+  return enableUserParams;
 }
